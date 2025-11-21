@@ -17,8 +17,7 @@ function App() {
   const [select, setSelect] = useState("");
   const [years, setYears] = useState("");
   const [textarea, setTextarea] = useState("");
-
-  Textarea
+  //ora tutti gli input sono CONTROLLATI dai relativi state
   function onsubmit(e) {
     e.preventDefault();
     console.log("just testing");
@@ -35,7 +34,13 @@ function App() {
                 <label htmlFor="fullname" className="form-label">
                   Nome completo
                 </label>
-                <input id="fullname" value={} type="text" className="form-control" />
+                <input
+                  id="fullname"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
+                  className="form-control"
+                />
                 <div className="form-text">inserisci il tuo nome completo</div>
               </div>
               {/*✅ Username (input di testo)*/}
@@ -43,7 +48,13 @@ function App() {
                 <label htmlFor="username" className="form-label">
                   Username
                 </label>
-                <input id="username" value={} type="text" className="form-control" />
+                <input
+                  id="username"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  type="text"
+                  className="form-control"
+                />
                 <div className="form-text">inserisci il tuo Username</div>
               </div>
               {/*✅ Password (input di tipo password)*/}
@@ -56,7 +67,8 @@ function App() {
                   type="password"
                   className="form-control"
                   autoComplete="current-password"
-                  value={}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="form-text">
                   La password deve contenere 8–20 caratteri.
@@ -67,7 +79,8 @@ function App() {
                 <select
                   className="form-select"
                   aria-label="Floating label select example"
-                  value={}
+                  value={select}
+                  onChange={(e) => setSelect(e.target.value)}
                 >
                   <option value="" disabled>
                     Scegli la tua specializzazione
@@ -84,7 +97,8 @@ function App() {
                   Anni di esperienza
                 </label>
                 <input
-                  value={}
+                  value={years}
+                  onChange={(e) => setYears(e.target.value)}
                   id="experience"
                   type="number"
                   className="form-control"
@@ -99,7 +113,8 @@ function App() {
               {/*✅ Breve descrizione sullo sviluppatore (textarea)*/}
               <div className="form-floating mb-3">
                 <textarea
-                  value={}
+                  value={textarea}
+                  onChange={(e) => setTextarea(e.target.value)}
                   id="floatingTextarea"
                   className="form-control altezza"
                   placeholder="Leave a comment here"
