@@ -20,7 +20,23 @@ function App() {
   //ora tutti gli input sono CONTROLLATI dai relativi state
   function onsubmit(e) {
     e.preventDefault();
-    console.log("just testing");
+    if (
+      name.trim() != "" &&
+      userName.trim() != "" &&
+      password.trim() != "" &&
+      select.trim() != "" &&
+      years.trim() != "" &&
+      textarea.trim() != ""
+    ) {
+      return console.log(`
+        hai stampato i seguenti valori 
+        per name: ${name}
+        per userName: ${userName}
+        per password: ${password}
+        per select: ${select}
+        per years: ${years}
+        per textarea: ${textarea} `);
+    }
   }
 
   return (
