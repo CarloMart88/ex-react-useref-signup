@@ -26,10 +26,11 @@ function App() {
   return (
     <>
       <div className="container m-5">
+        <h1>Form per la registrazione </h1>
         <div className="row">
           <div className="col-10">
             <form onSubmit={onsubmit}>
-              <div className="mb-3">
+              <div className="mb-3 col-5">
                 {/*✅ Nome completo (input di testo)*/}
                 <label htmlFor="fullname" className="form-label">
                   Nome completo
@@ -44,7 +45,7 @@ function App() {
                 <div className="form-text">inserisci il tuo nome completo</div>
               </div>
               {/*✅ Username (input di testo)*/}
-              <div className="mb-3">
+              <div className="mb-3 col-5">
                 <label htmlFor="username" className="form-label">
                   Username
                 </label>
@@ -58,7 +59,7 @@ function App() {
                 <div className="form-text">inserisci il tuo Username</div>
               </div>
               {/*✅ Password (input di tipo password)*/}
-              <div className="mb-3">
+              <div className="mb-3 col-5">
                 <label htmlFor="password" className="form-label">
                   Password
                 </label>
@@ -75,7 +76,7 @@ function App() {
                 </div>
               </div>
               {/*✅ Specializzazione (select con opzioni: "Full Stack", "Frontend", "Backend")*/}
-              <div className="form-floating mb-3">
+              <div className="form-floating mb-3 col-5">
                 <select
                   className="form-select"
                   aria-label="Floating label select example"
@@ -92,7 +93,7 @@ function App() {
                 <label>specializzazioni disponibili</label>
               </div>
               {/*✅ Anni di esperienza (input di tipo number)*/}
-              <div className="mb-3">
+              <div className="mb-3 col-5">
                 <label htmlFor="experience" className="form-label">
                   Anni di esperienza
                 </label>
@@ -111,7 +112,7 @@ function App() {
                 </div>
               </div>
               {/*✅ Breve descrizione sullo sviluppatore (textarea)*/}
-              <div className="form-floating mb-3">
+              <div className="form-floating mb-3 col-5">
                 <textarea
                   value={textarea}
                   onChange={(e) => setTextarea(e.target.value)}
@@ -122,7 +123,7 @@ function App() {
                 <label htmlFor="floatingTextarea">Breve descrizione</label>
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary ">
                 Submit
               </button>
             </form>
