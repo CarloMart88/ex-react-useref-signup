@@ -2,14 +2,21 @@ import { useState } from "react";
 /**📌 Milestone 1: Creare un Form con Campi Controllati
 Crea un form di registrazione con i seguenti campi controllati (gestiti con useState):
 
-Aggiungi una validazione al submit, verificando che:
 
+Aggiungi una validazione al submit, verificando che:
 Tutti i campi siano compilati
-L'input Anni di esperienza sia un numero positivo
 La Specializzazione sia selezionata
 
-Al submit, se il form è valido, stampa in console i dati. */
+Al submit, se il form è valido, stampa in console i dati. 
+*/
 function App() {
+  //adesso vado a creare tutte le variabili di stato per gestire i campi
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [select, setSelect] = useState("");
+  const [years, setYears] = useState("");
+
   function onsubmit(e) {
     e.preventDefault();
     console.log("just testing");
