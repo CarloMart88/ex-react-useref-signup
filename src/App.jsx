@@ -12,8 +12,8 @@ function App() {
   const refName = useRef();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [select, setSelect] = useState("");
-  const [years, setYears] = useState("");
+  const refSelect = useRef();
+  const refYears = useRef();
   const [textarea, setTextarea] = useState("");
   //ora tutti gli input sono CONTROLLATI dai relativi state
 
@@ -38,8 +38,8 @@ function App() {
       refName.current.value,
       userName,
       password,
-      select,
-      years,
+      refSelect.current.value,
+      refYears.current.value,
       textarea,
     ];
     const isNotEmpty = inputGroup.every((i) => i.trim() != "");
@@ -50,8 +50,8 @@ function App() {
         per name: ${refName.current.value}
         per userName: ${userName}
         per password: ${password}
-        per select: ${select}
-        per years: ${years}
+        per select: ${refSelect.current.value}
+        per years: ${refYears.current.value}
         per textarea: ${textarea} `);
     }
     {
@@ -133,8 +133,7 @@ function App() {
                 <select
                   className="form-select"
                   aria-label="Floating label select example"
-                  value={select}
-                  onChange={(e) => setSelect(e.target.value)}
+                  ref={refSelect}
                 >
                   <option value="" disabled>
                     Scegli la tua specializzazione
@@ -151,8 +150,7 @@ function App() {
                   Anni di esperienza
                 </label>
                 <input
-                  value={years}
-                  onChange={(e) => setYears(e.target.value)}
+                  ref={refYears}
                   id="experience"
                   type="number"
                   className="form-control"
