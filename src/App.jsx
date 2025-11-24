@@ -33,6 +33,10 @@ function App() {
     (u) => letters.includes(u) || numbers.includes(u)
   );
 
+  const passwordNameCheck = [...password].every(
+    (u) => letters.includes(u) || numbers.includes(u) || symbols.includes(u)
+  );
+
   function onsubmit(e) {
     e.preventDefault();
     const inputGroup = [name, userName, password, select, years, textarea];
@@ -98,10 +102,10 @@ function App() {
                   </div>
                 )}
               </div>
-              {/*✅ Password (input di tipo password)*/}
+              {/*✅ Password (input di tipo password) ✅ Password: Deve contenere almeno 8 caratteri, 1 lettera, 1 numero e 1 simbolo.*/}
               <div className="mb-3 col-5">
                 <label htmlFor="password" className="form-label">
-                  Password
+                  Password deve contenere tre 8 e 20 caratteri.
                 </label>
                 <input
                   id="password"
@@ -111,9 +115,17 @@ function App() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="form-text">
-                  La password deve contenere 8–20 caratteri.
-                </div>
+                {passwordNameCheck &&
+                password.length >= 8 &&
+                password.length < 20 ? (
+                  <div className="form-text green">
+                    la password può esser salvata
+                  </div>
+                ) : (
+                  <div className="form-text red">
+                    la password inserita non è valida
+                  </div>
+                )}
               </div>
               {/*✅ Specializzazione (select con opzioni: "Full Stack", "Frontend", "Backend")*/}
               <div className="form-floating mb-3 col-5">
