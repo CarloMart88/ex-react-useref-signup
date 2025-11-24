@@ -36,6 +36,10 @@ function App() {
   const passwordNameCheck = [...password].every(
     (u) => letters.includes(u) || numbers.includes(u) || symbols.includes(u)
   );
+  //✅ Descrizione: Deve contenere tra 100 e 1000 caratteri (senza spazi iniziali e finali).
+  const textAreaCheck =
+    textarea.trim().length > 100 && textarea.trim().length < 1000;
+  console.log(textAreaCheck);
 
   function onsubmit(e) {
     e.preventDefault();
@@ -163,7 +167,7 @@ function App() {
                   inserisci i tuoi anni di esperienza
                 </div>
               </div>
-              {/*✅ Breve descrizione sullo sviluppatore (textarea)*/}
+              {/*✅ Breve descrizione sullo sviluppatore (textarea) ✅ Descrizione: Deve contenere tra 100 e 1000 caratteri (senza spazi iniziali e finali).*/}
               <div className="form-floating mb-3 col-5">
                 <textarea
                   value={textarea}
@@ -172,7 +176,15 @@ function App() {
                   className="form-control altezza"
                   placeholder="Leave a comment here"
                 ></textarea>
-                <label htmlFor="floatingTextarea">Breve descrizione</label>
+                {textAreaCheck ? (
+                  <div className="form-text green">
+                    Breve descrizione min 100 caratteri max 1000
+                  </div>
+                ) : (
+                  <div className="form-text red">
+                    min 100 caratteri max 1000
+                  </div>
+                )}
               </div>
 
               <button type="submit" className="btn btn-primary ">
