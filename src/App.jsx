@@ -20,14 +20,10 @@ function App() {
   //ora tutti gli input sono CONTROLLATI dai relativi state
   function onsubmit(e) {
     e.preventDefault();
-    if (
-      name.trim() != "" &&
-      userName.trim() != "" &&
-      password.trim() != "" &&
-      select.trim() != "" &&
-      years.trim() != "" &&
-      textarea.trim() != ""
-    ) {
+    const inputGroup = [name, userName, password, select, years, textarea];
+    const isNotEmpty = inputGroup.every((i) => i.trim() != "");
+
+    if (isNotEmpty) {
       return console.log(`
         hai stampato i seguenti valori 
         per name: ${name}
@@ -36,6 +32,9 @@ function App() {
         per select: ${select}
         per years: ${years}
         per textarea: ${textarea} `);
+    }
+    {
+      console.log("ti mancano dei campi da compilare ");
     }
   }
 
