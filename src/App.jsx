@@ -24,6 +24,15 @@ function App() {
   const [years, setYears] = useState("");
   const [textarea, setTextarea] = useState("");
   //ora tutti gli input sono CONTROLLATI dai relativi state
+
+  // Per semplificare la validazione, puoi definire tre stringhe con i caratteri validi e usare .includes() per controllare se i caratteri appartengono a una di queste categorie:
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
+  const userNameCheck = [...userName].every(
+    (u) => letters.includes(u) || numbers.includes(u)
+  );
+
   function onsubmit(e) {
     e.preventDefault();
     const inputGroup = [name, userName, password, select, years, textarea];
@@ -45,6 +54,7 @@ function App() {
   }
 
   return (
+    //Per ciascuno dei campi validati in tempo reale, mostrare un messaggio di errore (rosso) nel caso non siano validi, oppure un messaggio di conferma (verde) nel caso siano validi.
     <>
       <div className="container m-5">
         <h1>Form per la registrazione </h1>
@@ -65,10 +75,11 @@ function App() {
                 />
                 <div className="form-text">inserisci il tuo nome completo</div>
               </div>
-              {/*✅ Username (input di testo)*/}
+              {/*✅ Username (input di testo) ✅ Username: Deve contenere solo caratteri alfanumerici e almeno 6 caratteri (no spazi o simboli)*/}
               <div className="mb-3 col-5">
                 <label htmlFor="username" className="form-label">
-                  Username
+                  Username (Deve contenere solo caratteri alfanumerici e almeno
+                  6 caratteri)
                 </label>
                 <input
                   id="username"
@@ -77,7 +88,15 @@ function App() {
                   type="text"
                   className="form-control"
                 />
-                <div className="form-text">inserisci il tuo Username</div>
+                {userNameCheck && userName.length >= 6 ? (
+                  <div className="form-text green">
+                    inserisci il tuo Username
+                  </div>
+                ) : (
+                  <div className="form-text red">
+                    errore nella compilazione del form!!
+                  </div>
+                )}
               </div>
               {/*✅ Password (input di tipo password)*/}
               <div className="mb-3 col-5">
