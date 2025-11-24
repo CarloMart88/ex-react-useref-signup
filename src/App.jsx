@@ -1,13 +1,19 @@
 import { useState } from "react";
-/**📌 Milestone 1: Creare un Form con Campi Controllati
-Crea un form di registrazione con i seguenti campi controllati (gestiti con useState):
+/**📌 Milestone 2: Validare in tempo reale
+Aggiungere la validazione in tempo reale dei seguenti campi:
 
+✅ Username: Deve contenere solo caratteri alfanumerici e almeno 6 caratteri (no spazi o simboli).
 
-Aggiungi una validazione al submit, verificando che:
-Tutti i campi siano compilati
-La Specializzazione sia selezionata
+✅ Password: Deve contenere almeno 8 caratteri, 1 lettera, 1 numero e 1 simbolo.
 
-Al submit, se il form è valido, stampa in console i dati. 
+✅ Descrizione: Deve contenere tra 100 e 1000 caratteri (senza spazi iniziali e finali).
+
+Suggerimento: Per semplificare la validazione, puoi definire tre stringhe con i caratteri validi e usare .includes() per controllare se i caratteri appartengono a una di queste categorie:
+
+const letters = "abcdefghijklmnopqrstuvwxyz";
+const numbers = "0123456789";
+const symbols = "!@#$%^&\*()-\_=+[]{}|;:'\\",.<>?/`~";
+Per ciascuno dei campi validati in tempo reale, mostrare un messaggio di errore (rosso) nel caso non siano validi, oppure un messaggio di conferma (verde) nel caso siano validi.
 */
 function App() {
   //adesso vado a creare tutte le variabili di stato per gestire i campi
