@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 /**Milestone 3: Convertire i Campi Non Controllati
 Non tutti i campi del form necessitano di essere aggiornati a ogni carattere digitato. Alcuni di essi non influenzano direttamente l’interfaccia mentre l’utente li compila, quindi è possibile gestirli in modo più efficiente.
 
@@ -21,16 +21,21 @@ function App() {
   const letters = "abcdefghijklmnopqrstuvwxyz";
   const numbers = "0123456789";
   const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
-  const userNameCheck = [...userName].every(
-    (u) => letters.includes(u) || numbers.includes(u)
-  );
+  const userNameCheck = useMemo(() => {
+    return [...userName].every(
+      (u) => letters.includes(u) || numbers.includes(u)
+    );
+  }, [userName]);
 
-  const passwordNameCheck = [...password].every(
-    (u) => letters.includes(u) || numbers.includes(u) || symbols.includes(u)
-  );
+  const passwordNameCheck = useMemo(() => {
+    return [...password].some(
+      (u) => letters.includes(u) || numbers.includes(u) || symbols.includes(u)
+    );
+  }, [password]);
   //✅ Descrizione: Deve contenere tra 100 e 1000 caratteri (senza spazi iniziali e finali).
-  const textAreaCheck =
-    textarea.trim().length > 100 && textarea.trim().length < 1000;
+  const textAreaCheck = useMemo(() => {
+    return textarea.trim().length > 100 && textarea.trim().length < 1000;
+  }, [textarea]);
 
   function onsubmit(e) {
     e.preventDefault();
@@ -44,7 +49,7 @@ function App() {
     ];
     const isNotEmpty = inputGroup.every((i) => i.trim() != "");
 
-    if (isNotEmpty) {
+    if (isNotEmpty && userNameCheck && passwordNameCheck && textAreaCheck) {
       return console.log(`
         hai stampato i seguenti valori 
         per name: ${refName.current.value}
@@ -55,7 +60,7 @@ function App() {
         per textarea: ${textarea} `);
     }
     {
-      console.log("ti mancano dei campi da compilare ");
+      alert("ti mancano dei campi da compilare ");
     }
   }
 
